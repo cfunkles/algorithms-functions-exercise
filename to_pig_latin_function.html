@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Change to Pig Latin Function</title>
+</head>
+<body>
+	<script>
+	/* 5. Write function that translates a text to Pig Latin, and another that translates back. English is translated to Pig Latin by taking the first letter of every word, moving it to the end of the word and adding "ay".
+
+	"The quick brown fox" -> "Hetay uickqay rownbay oxfay".
+	*/
+
+
+		function toPig(str) {
+			var pigWordArr = str.split(' ');
+			var newPigWord = [];
+			for (var i = 0; i < pigWordArr.length; i++) {
+				//pushes the word after the first letter and concats the first letter with ay.
+				newPigWord.push(
+					pigWordArr[i].slice(1, pigWordArr[i].length) + pigWordArr[i].slice(0,1) + 'ay');
+				}
+			var newStr = newPigWord.join(' ');
+			return newStr.toLowerCase();
+		}
+
+		function toEng(str) {
+			var pigWordArr = str.split(' ');
+			var newNormWord = [];
+			for (var i = 0; i < pigWordArr.length; i++) {
+				//engWord become the first letter which is the 3rd to last letter of array, and then the rest of the word gets added which is the beginning of the word to the 3rd to last character.
+				var engWord = pigWordArr[i].slice(pigWordArr[i].length - 3, pigWordArr[i].length - 2) + pigWordArr[i].slice(pigWordArr[0],pigWordArr[i].length - 3);
+				newNormWord.push(engWord);
+			}
+			//join the array into a word
+			var engStr = newNormWord.join(' ');
+			//does nothing, will make it capitolize the first letter someday.
+			return engStr.toLowerCase();
+		}
+
+		console.log(toPig("The quick brown fox"));//hetay uickqay rownbay oxfay
+		console.log(toPig('Sally sells seashells at the seashore'));//allysay ellssay eashellssay taay hetay eashoresay
+		console.log(toPig('Eat my shorts'));//ateay ymay hortssay
+		console.log(toPig('Pider Piper Picked a pack of pickled peppers'));//iderpay iperpay ickedpay aay ackpay foay ickledpay epperspay
+		console.log(toEng('hetay uickqay rownbay oxfay'));//The quick brown fox
+		console.log(toEng('allysay ellssay eashellssay taay hetay eashoresay'));//Sally sells seashells at the seashore
+		console.log(toEng('ateay ymay hortssay'));//Eat my shorts
+		console.log(toEng('iderpay iperpay ickedpay aay ackpay foay ickledpay epperspay'));//Pider Piper Picked a pack of pickled peppers
+	</script>
+</body>
+</html>

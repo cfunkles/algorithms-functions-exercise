@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Code in Square Code</title>
+</head>
+<body>
+	<script>/*
+	11. One way of encoding a message is called a "square code". Given a message like:
+		"Have a nice day!"
+		We determine an appropriate size of a square or rectangle to contain this message without spaces like so:
+		have
+		anic
+		eday
+		!
+		We then read the square in columns, which gives us our encoded message:
+			hae! and via ecy
+		Write two functions, called encodeSquare and decodeSquare. encodeSquare should be able to encrypt any arbitrary string, and decodeSquare should be able to unencrypt any arbitrary encoded string. The unencrypted string will have no spaces, and that's ok.
+*/
+
+		//takes out spaces of original string and turns into array of each character.
+		function takeOutSpaces(unEncodedStr) {
+			var letterArr = unEncodedStr.split('');
+			var noSpaceArr = [];
+			for (var i = 0; i < letterArr.length; i++) {
+				if (letterArr[i] !== ' ') {
+					noSpaceArr.push(letterArr[i]);
+				}
+			}
+			return noSpaceArr;
+		}
+
+		//takes original string and square roots the strings length number. Then it makes an array inside an array to separate each character.
+		function putInGrid(unEncodedStr) {
+			var noSpaceArr = takeOutSpaces(unEncodedStr);//calls function, assigns value to variable
+			var gridNum = strGrid();// calls function below
+			function strGrid() {
+				return Math.ceil(Math.sqrt(noSpaceArr.length));//returns a natural number
+			}
+
+			//builds an array making and starts a new index postion until the word is as long as the gridNum
+			var wordArr = [];
+			for (var i = 0; i < gridNum; i++) {
+				for (var j = 0; j < gridNum; j++) {
+					if (j === 0) {
+						wordArr[i] = noSpaceArr[0];//does first letters for each word
+						noSpaceArr.shift();
+					} else {
+						if (noSpaceArr[0] !== undefined) {//does other letters if there are letters. 
+							wordArr[i] += noSpaceArr[0];
+							noSpaceArr.shift();
+						}
+					}
+				}
+			}
+			return wordArr;
+		}
+
+		//gets the result from last two functions. Takes result and goes through every array item and switches the coordinate numbers of the array.
+		function encodeSquare(unEncodedStr) {
+			var gridArr = putInGrid(unEncodedStr);
+			var arrInArr = [];
+			var tempArrInArr = [];
+
+			//turns each word of gridArr into an array and puts that value into a new array
+			//tempArrInArr is a duplicated array of arrInArr, that its values do not get altered
+			for (var i = 0; i < gridArr.length; i++) {
+				arrInArr[i] = gridArr[i].split('');
+				tempArrInArr[i] = gridArr[i].split('');
+			}
+
+			//switches each coordinate postion of the array items
+			for (var k = 0; k < gridArr.length; k++) {
+				for (var j = 0; j < tempArrInArr[0].length; j++) {
+					arrInArr[k][j] = tempArrInArr[j][k]; 
+				}
+			}
+
+			//takes the array in an array, and turns it into a string seperating the words.
+			var codedStr = '';
+			function makeStr(arrInArr) {
+				for (var i = 0; i < arrInArr.length; i++) {
+					for (var j = 0; j < arrInArr[i].length; j++) {
+						if (arrInArr[i][j] !== undefined) {
+							codedStr += arrInArr[i][j];
+						}
+					}
+					codedStr += ' ';
+				}
+			}
+			//call makeStr function to return the encoded string.
+			makeStr(arrInArr);
+			return codedStr;
+		}
+
+		//turns encoded string into an array in an array
+		function makeArrinArr(encodedStr) {
+			var encodedArr = encodedStr.split(' ');
+			var encodedArrInArr = [[]];
+			for (var i = 0; i < encodedArr.length; i++) {
+				encodedArrInArr[i] = encodedArr[i].split('');
+			}
+			return encodedArrInArr;
+		}
+		
+
+		//takes the array in an array results and pushes the first letter of each work into a new array.
+		function decodeSquare(encodedStr) {
+			var encodedArrInArr = makeArrinArr(encodedStr);
+			var decodedArr = [];
+			for (var i = 0; i < encodedArrInArr.length; i++) {
+				for (var j = 0; j < encodedArrInArr.length; j++) {
+					if (encodedArrInArr[j][i] !== undefined) {
+					decodedArr.push(encodedArrInArr[j][i]);
+					}
+				}
+			}
+			var decodedStr = decodedArr.join('');
+			return decodedStr;
+		 }
+
+		console.log(encodeSquare('Have a nice day!'));
+		console.log(decodeSquare('Hae! and via ecy'));
+		console.log(encodeSquare('Write two functions, called encodeSquare and decodeSquare. encodeSquare should be able to encrypt any arbitrary string, and decodeSquare should be able to unencrypt any arbitrary encoded string. The unencrypted string will have no spaces, and that\'s ok.'));
+		console.log(decodeSquare("WnSSuebnherneea rsqqatidonagdnt i,uurotducr.so' tcaaeerelryTtss earrsnacdyehrpo tleehcrobpneiak wla.orydetcunc. oeneuyseaaonge fddnlptSbndews uedcdtrqlyeni, nneobaiueadcla cccdennatrsrln tooeaygrobtyhd iddSba,euirpat oeeqlrasntitvh "));
+	</script>
+</body>
+</html>

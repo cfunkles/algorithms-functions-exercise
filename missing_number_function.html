@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Missing Number in Array</title>
+</head>
+<body>
+	<script>
+		/* 3. Write a function which takes an array of integers > 0 and returns the first integer which does not appear in that array.
+			[1,2,5] -> 3
+			[1,2,3,4,5] -> 6
+			[3,4,5] -> 1
+		*/
+
+		function missingInterger(arr) {
+			//compare the loop number to the array index number which is arr[i] and i Is always one less
+			for (var i = 0; i < arr.length; i++) {
+				if (arr[i] !== i + 1) {
+					return i + 1;
+				} else {
+					//if number not found its the next one after the end of the array length
+					return arr.length + 1;
+				} 
+			}
+		}
+		console.log(missingInterger([1,2,5]));//-->3
+		console.log(missingInterger([1,2,3,4,5]));//-->6
+		console.log(missingInterger([3,4,5]));//-->1
+	</script>
+</body>
+</html>

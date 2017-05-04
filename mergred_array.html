@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Merging Arrays</title>
+</head>
+<body>
+	<script>
+		/* 9. Write a function which takes two sorted lists and merges them into a new sorted list.
+
+			[1,2,5,6,9], [3,4,5,10] -> [1,2,3,4,5,5,6,9,10]
+			[], [] -> []
+			[-1, 0, 1], [-2, 2] -> [-2, -1, 0, 1, 2]
+			*/
+
+		function mergArr(arr1, arr2) {
+			var mergedArr = [];
+			//by add the lengths of each array you can garentee it will run enough times
+			for (var i = 0; i < (arr1.length + arr2.length); i++) {
+				//pushes the first array into a new array
+				if (arr1[i] !== undefined) {
+				mergedArr.push(arr1[i]);
+				}
+				//pushes the second array into the same new array
+				if (arr2[i] !== undefined) {
+				mergedArr.push(arr2[i]);
+				}
+			}
+			//sorts the new array and computers numbers as numbers so they properly sort
+			mergedArr.sort(function(a, b) {return a - b;});
+			return mergedArr;
+		}
+		console.log(mergArr([1,2,5,6,9],[3,4,5,10]));//[1, 2, 3, 4, 5, 5, 6, 9, 10]
+		console.log(mergArr([],[]));//[]
+		console.log(mergArr([-1,0,1],[-2,2]));//[-2, -1, 0, 1, 2]
+		console.log(mergArr([500,4,-9,21,1000,-200],[1,2,3,4]));//[-200, -9, 1, 2, 3, 4, 4, 21, 500, 1000]
+
+	</script>
+</body>
+</html>

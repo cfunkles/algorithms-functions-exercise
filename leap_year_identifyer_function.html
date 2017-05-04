@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Is this a leap Year?</title>
+</head>
+<body>
+	<script>
+	/* 2. Write a funciton which, given a year as a number, returns whether that number is a leap year.
+
+		2000 -> true
+		1900 -> false
+		2016 -> true
+		*/
+
+		function isLeapYear(year) {
+			//checks for that funny condition in leap years
+			if (year % 100 === 0 && year % 400 !== 0) {
+				return false;
+			}
+			if (year % 4 === 0) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		//tests
+		console.log(isLeapYear(1900) === false);
+		console.log(isLeapYear(2000) === true);
+		console.log(isLeapYear(2004) === true);
+		console.log(isLeapYear(1903) === false);
+		console.log(isLeapYear(4) === true);
+		console.log(isLeapYear(1) === false);
+		console.log(isLeapYear(100) === false);
+		console.log(isLeapYear(400) === true);
+	</script>
+</body>
+</html>

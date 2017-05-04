@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Random Array of 10</title>
+</head>
+<body>
+	<script>
+		/* 8. Write a function which takes no input and returns an array of 10 distinct randomly generated integers between 1 and 100.
+
+			-> [48, 5, 32, 2, 10, 11, 34, 95, 82, 93] (good!)
+			-> [1, 1, 24, 63, 45, 84, 17, 11, 59, 13] (bad - duplicated number)
+		*/
+		function randArr() {
+			var arrOfTen = [];
+			//runs until arrays length is 10
+			while (arrOfTen.length < 10) {
+				var randomNumber = Math.floor(Math.random() * 100);
+				if (arrOfTen.indexOf(randomNumber) === -1) {
+					//checks to make sure number is not there
+					arrOfTen.push(randomNumber);
+				}
+			}
+			return arrOfTen;
+		}
+
+		console.log(randArr());//[28, 19, 61, 26, 41, 9, 90, 80, 92, 70]
+		console.log(randArr());//[82, 95, 96, 41, 51, 87, 2, 57, 83, 1]
+	</script>
+</body>
+</html>

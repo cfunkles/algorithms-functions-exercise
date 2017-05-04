@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Remove Duplicate intergers</title>
+</head>
+<body>
+	<script>
+		/* 4. Write a function which takes an array of integers and returns an array with any duplicate integers removed.
+			[1,1,2,3,1,2,3] -> [1,2,3]
+			[1,4,4,4,2,2,4,4,4] -> [1,4,2]
+		*/
+		
+		function removeDuplicates(arr) {
+			var noDups = [];
+			for (var i = 0; i < arr.length; i++) {
+				//indexOf method returns index number of the elements first spot, so i'm comparing index of each element with the index were are at in array.
+				if (arr.indexOf(arr[i]) === i) {
+					noDups.push(arr[i]);
+					//if the element being checked by the loop has the same index as where we are in the loop then we add that element to a new array.
+				} 
+			}
+			return noDups;
+		}
+
+
+
+		console.log(removeDuplicates([1,1,2,3,1,2,3]));// [1,2,3]
+		console.log(removeDuplicates([1,4,4,4,2,2,4,4,4]));// [1,4,2]
+		console.log(removeDuplicates([1,2,3,4,5,6,7,8,9]));// [1,2,3,4,5,6,7,8,9]
+		console.log(removeDuplicates([4,111,1111,1111,675,457,464,345,457,345]));// [4,111,1111,675,457,464,345]
+	</script>
+</body>
+</html>

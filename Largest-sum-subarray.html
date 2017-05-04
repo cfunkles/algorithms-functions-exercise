@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		//10. Write a function which, given an array, determines the subarray(slice) with the largest sum.
+		/*
+			return subarray contiguously with the greatest sum. step through array in slices. Sum all the slices. return the biggest one. 
+		*/
+		//made with help from class!
+		function returnSubArr(arr) {
+
+			var sumOfStuff = 0;
+			var indexPoints = [];
+			for (var i = 0; i <= arr.length; i++) {
+				for (var j = 0; j <= arr.length; j++) {
+					//checks if sum of next subarray is greater and resets sum
+					if (sumOfStuff < sumArr(arr.slice(i,j))) {
+						sumOfStuff = sumArr(arr.slice(i,j));
+						indexPoints[0] = i;
+						indexPoints[1] = j; 
+					}
+				}
+			}
+			var finalArr = arr.slice(indexPoints[0],indexPoints[1]);
+			return finalArr;
+		}
+
+		function sumArr(arr) {
+			//adds sum of subarrays
+			var subArrSum = 0;
+			for (var i = 0; i < arr.length; i++) {
+				subArrSum += arr[i];
+			}
+			return subArrSum;
+		}
+
+		console.log(returnSubArr([1,1,1,-1]));//[1,1,1]
+		console.log(returnSubArr([1,5,-4,3,2,-3]));//[1, 5, -4, 3, 2]
+		console.log(returnSubArr([2,2,-10,5,-10,2,2]));//[5]
+		console.log(returnSubArr([1,3,-4,5,7,9]));//[1, 3, -4, 5, 7, 9]
+
+
+	</script>
+</body>
+</html>

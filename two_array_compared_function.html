@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Array lengths and values compared</title>
+</head>
+<body>
+	<script>
+	/*
+		6. Write a function which takes in two arrays and determines if they contain the same number of the same values.
+[], [] -> true
+[2, 3, 4], [1, 2, 3] -> false
+["a", "c", "b"], ["a", "b", "c"] -> true
+[1, 1, 1], [1, 1, 1, 1] -> false */
+
+		function arrComparison(arr1, arr2) {
+			//checks for emptys
+			if (arr1.length === 0 && arr2.length === 0) {
+				return true;
+			}
+			//start by looking for similar length
+			if (arr1.length === arr2.length) {
+				arr1.sort();
+				arr2.sort();
+				for (var i = 0; i < arr1.length; i++) {
+					if (arr1[i] !== arr2[i]) {
+						return false;
+					}
+				}
+			return true;
+			}
+			//statement if arrays are not equal in size
+			return false;
+
+		}
+
+		console.log(arrComparison([],[]));//true
+		console.log(arrComparison([2,3,4],[1,2,3]));//false
+		console.log(arrComparison(['a','c','b','d','e'],['a','b','c','d','f']));//false
+		console.log(arrComparison(['a','c','b'],['b','a','c']));//true
+		console.log(arrComparison([1,1,1],[1,1,1,1]));//false
+
+	</script>
+</body>
+</html>
